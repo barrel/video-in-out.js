@@ -15,7 +15,20 @@ const merge = defaults => overwrites => {
 
 const testState = el => el.readyState == 4
 
-const setSrc = el => el.setAttribute('src', el.getAttribute('data-src') )
+const setSrc = el => {
+  let intViewportWidth = window.innerWidth;
+  let sources = el.getAttribute('data-src').split(', ').map((source) => {
+    return {
+      src: source.split(' ').shift(),
+      size: parseInt(source.split(' ').pop().split('x').shift())
+    }
+  }).filter((source) => {
+    if (intViewportWidth <= source.size) {
+      return true
+    }
+  })
+  el.setAttribute('src', sources.pop().src)
+}
 
 const events = loop()
 
