@@ -1,6 +1,6 @@
 {
   "name": "video-in-out.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Automate the play and pause of videos based on scroll",
   "author": "barrel",
   "main": "./src/main.js",
