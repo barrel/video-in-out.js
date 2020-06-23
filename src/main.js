@@ -20,7 +20,7 @@ const setSrc = el => {
   let sources = el.getAttribute('data-src').split(', ').map((source) => {
     return {
       src: source.split(' ').shift(),
-      size: parseInt(source.split(' ').pop().split('x').shift())
+      size: parseInt(source.split(' ').pop().match(/(\d+w)/g).shift())
     }
   }).filter((source) => {
     if (intViewportWidth <= source.size) {
