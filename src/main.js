@@ -18,16 +18,17 @@ const testState = el => el.readyState == 4
 const setSrc = el => {
   let intViewportWidth = window.innerWidth;
   let sources = el.getAttribute('data-src').split(', ').map((source) => {
+    let src = parseInt(source.split(' ').pop().match(/(\d+w)/g).shift())
     return {
       src: source.split(' ').shift(),
-      size: parseInt(source.split(' ').pop().match(/(\d+w)/g).shift())
+      size: src
     }
   }).filter((source) => {
-    if (intViewportWidth <= source.size) {
+    if (intViewportWidth >= source.size) {
       return true
     }
   })
-  el.setAttribute('src', sources.pop().src)
+  el.setAttribute('src', sources.shift().src)
 }
 
 const events = loop()
